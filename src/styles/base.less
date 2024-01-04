@@ -1,0 +1,142 @@
+/* base color setting, do not use this settings direct */
+@A1: #1BACC8; /* 27 172 200 */
+@A2: #49BDD3; /* 73 289 211 */
+@A3: #D1EEF4; /* 209 238 244 */
+@A4: #E8F6F9; /* 232 246 249 */
+@A5: #32689A; /* 50 104 154 */
+@A6: rgba(27, 172, 200, 0.2); /* #1BACC8 0.2*/
+@A7: rgba(27, 172, 200, 0.1);
+@A6_ORG: #1BACC8; // *_ORG is the same to UI, it is fixed * error color,
+@A7_ORG: #F6FCFD;
+
+@B1: #262626; /* 0 0 0 .85 */
+@B2: #595959; /* 0 0 0 .65 */
+@B3: #8C8C8C; /* 0 0 0 .45 */
+@B4: #BFBFBF; /* 0 0 0 .25 */
+@B5: #D9D9D9; /* 0 0 0 .15 */
+@B6: #F2F2F2; /* 0 0 0 .05 */
+@B7: #F7F7F7; /* 0 0 0 .03 */
+@B8: #FFFFFF; /* 0 0 0 1 */
+
+@B9: #D3D3D3; /* 0 0 0 .80 */
+@B10: #8F8F8F; /* 0 0 0 .50 */
+@B11: #515151; /* 0 0 0 .20 */
+@B12: rgba(0, 0, 0, 0.05);
+@B13: rgba(0, 0, 0, 0.03);
+@B14: rgba(0, 0, 0, 0.45);
+@B15: rgba(255, 255, 255, 0.8);
+@B16: #F5F5F5;
+@B17: rgba(0, 0, 0, 0.09);
+@B18: rgba(0, 0, 0, 0.2);
+
+@C1: #E83241; /* 232 50 65 */
+@C2: #72CF44; /* 114 207 68 */
+@C3: #FAAD14; /* 250 173 20 */
+@C4: #975FE4; /* 151 95 28 */
+@C5: #36CBCB; /* 54 203 203 */
+@C6: #EE69BA; /* 238 105 186 */
+@C7: #40A9FF; /* 64 169 255 */
+@C8: #FF7A45; /* 255 122 69 */
+@C9: #A0D911; /* 160 217 17 */
+@C10: #FF8B00; /* 255 139 0 */
+@C11: #007730; /* 0 199 48 */
+
+
+@control_hover_color: rgba(255, 255, 255, .2);
+@group_button_selected: @A1;
+@white: @B8;
+@black: #000000;
+@grey: #E8E8E8;
+@blue: #0085E1;
+@red: #F5222D;
+@orange: #FCA12B;
+
+@lightLine: #E5E5E5;
+
+/* feature color by base, you can use these */
+
+@bg-color: @B6;
+@main-color: @blue;
+@line-color: @grey;
+@error-color: @red;
+
+
+@draggable_header_container: @A5;
+@draggable_header_container_color: @B8;
+@selectedColor: @A1;
+
+/* control color */
+@controlLabel: @B2;
+@controlBackBround: @B8;
+@controlFont: @B1;
+@controlGapLine: @A5;
+@controlInput: @B6;
+
+/* modal css */
+@modalTitleHeight: 48px;
+@modalFooterHeight: 64px;
+
+@antd-primary-color: @A1;
+@notificationCard: #4DCB73;
+
+@planVolumeBorder: #2A2A2A;
+
+@stepsBorder: #f0f0f0;
+
+@planProcessed: #EBD000;
+
+@planExporting: #FFAA39;
+
+@stimulateRun: #4FC781;
+@stimulatePause: #EA5857;
+@stimulateOver: #459DD8;
+
+
+
+@font-size-base: 14px;
+@font-size-lg: @font-size-base + 2px;
+// height rules
+@height-base: 32px;
+@height-lg: 36px;
+@height-sm: 24px;
+
+
+
+// Select
+// ---
+
+@select-item-selected-font-weight: 600;
+@select-dropdown-height: 32px;
+@select-single-item-height-lg: 36px;
+@select-multiple-item-height-lg: 32px;
+@select-multiple-item-disabled-color: #bfbfbf;
+
+
+
+.mr16{
+  margin-right: 16px;
+}
+.ml16{
+  margin-left: 16px;
+}
+.mr24{
+  margin-right: 24px;
+}
+.ml24{
+  margin-left: 24px;
+}
+.mr32{
+  margin-right: 32px;
+}
+.ml32{
+  margin-left: 32px;
+}
+
+.ng_spin{
+  :global{
+    .ant-spin {
+      height: 100%;
+      max-height: 100% !important;
+    }
+  }
+}
