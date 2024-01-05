@@ -30,7 +30,7 @@ import { getEduClient } from '@/api/eduApi'
 import ClassCard from '@/views/class/ClassCard.vue'
 
 const classList = ref([
-  {id: 1, name: '---', studentsNum: '---', teachersNum: '---'}
+  {id: 1, name: '---', studentsNum: 0, teachersNum: 0}
 ])
 const collegeId = ref(1)
 // TODO 2024/1/3 ruoweng 实际是从数据库获取

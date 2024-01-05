@@ -104,6 +104,7 @@ const jumpTo = (path: string) => {
 
   .inner_context{
     flex: 1;
+    height: 100%;
   }
 }
 

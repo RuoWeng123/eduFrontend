@@ -31,6 +31,17 @@ export class eduApi {
   public async getClassList(filterParam: any): Promise<any>{
     return this.eduClient.restGet('/api/class', filterParam);
   }
+  
+  // 学院
+  public async getCollegeList(): Promise<any>{
+    return this.eduClient.restGet('/api/college', {});
+  }
+  public async createCollege(collegeParam: any): Promise<any>{
+    return this.eduClient.restPost('/api/college', collegeParam);
+  }
+  public async deleteCollege(id:number): Promise<any>{
+    return this.eduClient.restDelete(`/api/college/${id}`);
+  }
   /**
    * 添加 老师
    */

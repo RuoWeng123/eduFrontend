@@ -1,12 +1,24 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { useUserStore } from '@/stores/auth'
-import { setAuthToken } from '@/api/eduApi'
+import { resetAuthToken, setAuthToken } from '@/api/eduApi'
+import router from '@/router'
+import { onMounted } from 'vue'
 // 应对刷新页面，axios中的token丢失的情况
 const {user} =useUserStore()
 if(user.token){
   setAuthToken(user.token)
 }
+const tokenGuard = () =>{
+  console.log('tokenGuard', user)
+  if(!user.token){
+    router.push('/login');
+    resetAuthToken();
+  }
+}
+onMounted(() => {
+  tokenGuard()
+})
 </script>
 
 <template>

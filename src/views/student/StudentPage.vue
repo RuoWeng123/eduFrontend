@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  学生表格
+ student page
 </template>
 
 <style scoped>

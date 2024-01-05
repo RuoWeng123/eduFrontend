@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { defineProps, defineEmits, computed } from 'vue'
+import EditCollegeComponent from '@/views/college/EditCollegeComponent.vue'
 
 const props = defineProps({
   isVisible: Boolean,
   type: String,
   isEdit: Boolean,
+  editData: Object,
   close: Function
 })
 const emit = defineEmits([ 'close' ])
@@ -22,9 +24,13 @@ const getTile = ()=>{
     case 'student':
       strTitle = `${prefix}学生`
       break;
+    case 'college':
+      strTitle = `${prefix}学院`
+      break;
   }
   return strTitle
 }
+const type = computed(() =>props.type)
 const onClose = () =>{
   emit('close')
 }
@@ -38,7 +44,7 @@ const onClose = () =>{
     :close-on-press-escape="true"
     @close="onClose">
     <div class="modal_content">
-      这里是form 表单
+      <editCollegeComponent v-if="type === 'college'" :edit-data="props.editData" @handleClose="onClose"></editCollegeComponent>
     </div>
   </el-drawer>
 </template>
