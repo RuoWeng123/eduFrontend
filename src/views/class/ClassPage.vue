@@ -32,13 +32,13 @@ import ClassCard from '@/views/class/ClassCard.vue'
 const classList = ref([
   {id: 1, name: '---', studentsNum: 0, teachersNum: 0}
 ])
-const collegeId = ref(1)
+const collegeId = ref(null)
 // TODO 2024/1/3 ruoweng 实际是从数据库获取
 const collegeList = reactive([
   {name: '法学院', id: 1},
   {name: '软件学院', id: 2},
 ])
-const year = ref(2012)
+const year = ref(null)
 const yearList = reactive([
   2012,
   2017,
@@ -54,15 +54,28 @@ const getList = () =>{
       return {
         id: item.id,
         name: item.name,
-        studentsNum: item.studentsNum || 0,
-        teachersNum: item.teachersNum || 0
+        studentsNum: item.students.length || 0,
+        teachersNum: 0
       }
     })
   });
 }
-
+const getCollegeList = () =>{
+  getEduClient().getCollegeList().then(res => {
+    console.log(res)
+    collegeList.push(...res.map(item =>{
+      return {
+        id: item.id,
+        name: item.name,
+      }
+    }))
+  });
+}
 defineExpose({getList})
-onMounted(getList)
+onMounted(() =>{
+  getList(),
+  getCollegeList()
+})
 
 const emit = defineEmits<
   {

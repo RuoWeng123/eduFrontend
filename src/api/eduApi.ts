@@ -31,6 +31,10 @@ export class eduApi {
   public async getClassList(filterParam: any): Promise<any>{
     return this.eduClient.restGet('/api/class', filterParam);
   }
+  
+  public async getClassAll(): Promise<any>{
+    return this.eduClient.restGet('/api/class/all', {});
+  }
   public async deleteClass(id:number): Promise<any>{
     return this.eduClient.restDelete(`/api/class/${id}`);
   }
@@ -56,7 +60,13 @@ export class eduApi {
    * 添加 学生
    */
   public async createStudent(studentParam: any): Promise<any>{
-    return this.eduClient.restPost('/student', studentParam);
+    return this.eduClient.restPost('/api/student', studentParam);
+  }
+  public async getStudentList(): Promise<any>{
+    return this.eduClient.restGet('/api/student', {});
+  }
+  public async deleteStudent(id:number): Promise<any>{
+    return this.eduClient.restDelete(`/api/student/${id}`);
   }
   
   /**

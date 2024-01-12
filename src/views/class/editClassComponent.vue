@@ -15,8 +15,6 @@ const formData = reactive({
   year: props.editData?.year || dayjs().format('YYYY'),
 })
 const collegeList = ref<CollegeList>([])
-
-
 const getCollegeList = async (): Promise<CollegeList> =>{
   let res = await getEduClient().getCollegeList()
   return res.map((item: College) =>{

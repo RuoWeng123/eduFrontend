@@ -1,13 +1,15 @@
 <template>
   <el-container>
     <el-main>
-      <CollegeCard v-for="item in collegeList" :key="item.id" :name="item.name" :class-num="item.classNum" @onAction="(type: string) =>handleAction(type, item)"></CollegeCard>
+      <div v-if="collegeList.length > 0">
+        <CollegeCard v-for="item in collegeList" :key="item.id" :name="item.name" :class-num="item.classNum" @onAction="(type: string) =>handleAction(type, item)"></CollegeCard>
+      </div>
+      <el-empty v-else description="暂无数据"></el-empty>
     </el-main>
   </el-container>
 </template>
 <script setup lang="ts">
-
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { getEduClient } from '@/api/eduApi'
 import CollegeCard from '@/views/college/CollegeCard.vue'
 

@@ -16,8 +16,8 @@
     </el-header>
     <el-main style="height: 100%;">
       <ClassComponent ref="classRef" v-if="activeIndex === '1'"  @on-edit="handleEditInstance"></ClassComponent>
-      <TeacherComponent v-if="activeIndex === '2'"></TeacherComponent>
-      <StudentComponent v-if="activeIndex === '3'"></StudentComponent>
+      <TeacherComponent ref="teacherRef" v-if="activeIndex === '2'" @on-edit="handleEditInstance"></TeacherComponent>
+      <StudentComponent ref="studentRef" v-if="activeIndex === '3'" @on-edit="handleEditInstance"></StudentComponent>
       <CollegeComponent ref="collegeRef" v-if="activeIndex === '4'" @on-edit="handleEditInstance" ></CollegeComponent>
     </el-main>
   </el-container>
@@ -33,6 +33,8 @@ import CollegeComponent from './college/CollegePage.vue'
 const activeIndex = ref('1')
 const collegeRef = ref(null);
 const classRef = ref(null);
+const teacherRef = ref(null);
+const studentRef = ref(null);
 const handleSelect = (index: string) => {
   activeIndex.value = index
 }
@@ -63,6 +65,12 @@ const handleDrawerClose = () =>{
   switch (activeIndex.value){
     case '1':
       currentRef = classRef;
+      break;
+    case '2':
+      currentRef = teacherRef;
+      break;
+    case '3':
+      currentRef = studentRef;
       break;
     case '4':
       currentRef = collegeRef;

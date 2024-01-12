@@ -13,9 +13,33 @@ type College = {
 }
 type CollegeList = College[];
 
+type Student = {
+  id: number | undefined;
+  name: string;
+  card: string;
+  sex: number;
+  classId: number;
+}
+type StudentList = Student[];
+
+type Teacher = {
+  id: number | undefined;
+  name: string;
+  password: string;
+  course: string;
+  subject: string | undefined;
+  role_id: number;
+}
+type TeacherList = Teacher[];
+
 export type {
   Class,
   ClassList,
   College,
   CollegeList,
+  Student,
+  StudentList,
+  Teacher,
+  Gender,
+  TeacherList,
 }

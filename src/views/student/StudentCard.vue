@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Delete } from '@element-plus/icons-vue'
+import type {Student} from '@/common/types/eduType'
 
 const props = defineProps({
-  id: Number,
-  name: String,
-  teacherNum: Number,
-  studentNum: Number
+  student: Object as () => Student,
 })
-const id = computed(() => props.id)
-const name = computed(() => props.name)
-const teacherNum = computed(() => props.teacherNum)
-const studentNum = computed(() => props.studentNum)
+const id = computed(() => props.student?.id)
+const name = computed(() => props.student?.name)
+const sex = computed(() => props.student?.sex)
+const age = computed(() => calAgeByCard(props.student?.card))
 
+const calAgeByCard = (card: string | undefined) =>{
+  if(!card) return '-'
+  const year = card.substring(6, 10)
+  const now = new Date().getFullYear()
+  return now - Number(year)
+}
 const emit = defineEmits<{
   onAction:[value: string]
 }>()
@@ -24,8 +28,8 @@ const handleAction = (type: string) =>{
 <template>
   <div class="class_card">
     <span class="name">{{name}}</span>
-    <span class="student_num">关联学生: {{studentNum}}</span>
-    <span class="teacher_num">关联老师: {{teacherNum}}</span>
+    <span class="student_num">性别: {{sex}}</span>
+    <span class="teacher_num">年龄: {{age}}</span>
     <span class="action">
       <el-tooltip placement="top" content="编辑">
         <el-icon @click="handleAction('edit')"><Edit /></el-icon>
