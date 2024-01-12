@@ -22,7 +22,7 @@ const handleAction = (type: string) =>{
 <template>
   <div class="class_card">
     <span class="name">{{name}}</span>
-    <span class="class_num">{{classNum}}</span>
+    <span class="class_num">关联班级: {{classNum}}</span>
     <span class="action">
       <el-tooltip placement="top" content="编辑">
         <el-icon @click="handleAction('edit')"><Edit /></el-icon>

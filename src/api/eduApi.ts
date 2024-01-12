@@ -25,12 +25,16 @@ export class eduApi {
   /**
    * 添加 班级
    */
-  public async addClass(classParam: any): Promise<any>{
-    return this.eduClient.restPost('/myClass', classParam);
+  public async createClass(classParam: any): Promise<any>{
+    return this.eduClient.restPost('/api/class', classParam);
   }
   public async getClassList(filterParam: any): Promise<any>{
     return this.eduClient.restGet('/api/class', filterParam);
   }
+  public async deleteClass(id:number): Promise<any>{
+    return this.eduClient.restDelete(`/api/class/${id}`);
+  }
+  
   
   // 学院
   public async getCollegeList(): Promise<any>{

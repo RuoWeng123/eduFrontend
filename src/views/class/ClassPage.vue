@@ -19,7 +19,7 @@
       </el-select>
     </el-header>
     <el-main>
-      <ClassCard v-for="item in classList" :key="item.id" :name="item.name" :teacher-num="item.teachersNum" :student-num="item.studentsNum"></ClassCard>
+      <ClassCard v-for="item in classList" :key="item.id" :name="item.name" :teacher-num="item.teachersNum" :student-num="item.studentsNum" @onAction="(type: string) =>handleAction(type, item)"></ClassCard>
     </el-main>
   </el-container>
 </template>
@@ -47,7 +47,7 @@ const yearList = reactive([
   2020,
   2021
 ])
-const getClassList = () =>{
+const getList = () =>{
   getEduClient().getClassList({collegeId: collegeId.value, year: year.value}).then(res => {
     console.log(res)
     classList.value = res.map(item =>{
@@ -60,7 +60,27 @@ const getClassList = () =>{
     })
   });
 }
-onMounted(getClassList)
+
+defineExpose({getList})
+onMounted(getList)
+
+const emit = defineEmits<
+  {
+    onEdit: [value: any]
+  }
+>()
+const handleAction = (type: string, current: any) =>{
+  if(type === 'edit'){
+    emit('onEdit', current)
+  }
+  if(type === 'delete'){
+    getEduClient().deleteClass(current.id).then(res => {
+      if(res){
+        getList()
+      }
+    });
+  }
+}
 </script>
 
 <style scoped>

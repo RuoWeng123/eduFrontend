@@ -14,26 +14,25 @@ import CollegeCard from '@/views/college/CollegeCard.vue'
 const collegeList = ref([
   {id: 1, name: '---', classNum: 0}
 ])
-const getCollegeList = () =>{
+const getList = () =>{
   getEduClient().getCollegeList().then(res => {
-    console.log(res)
+    console.log(res);
     collegeList.value = res.map(item =>{
       return {
         id: item.id,
         name: item.name,
-        classNum: item.classNum || 0,
+        classNum: item.classes.length || 0,
       }
     })
   });
 }
-defineExpose({getCollegeList})
+defineExpose({getList})
 const emit = defineEmits<
   {
     onEdit: [value: any]
   }
 >()
 const handleAction = (type: string, current: any) =>{
-  console.log('从card 穿出的数据',type)
   if(type === 'edit'){
     emit('onEdit', current)
   }
@@ -41,12 +40,12 @@ const handleAction = (type: string, current: any) =>{
     getEduClient().deleteCollege(current.id).then(res => {
       console.log(res)
       if(res){
-        getCollegeList()
+        getList()
       }
     });
   }
 }
-onMounted(getCollegeList)
+onMounted(getList)
 </script>
 
 <style scoped>

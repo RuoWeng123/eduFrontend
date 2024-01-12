@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { Delete } from '@element-plus/icons-vue'
 
 const props = defineProps({
   id: Number,
@@ -11,16 +12,26 @@ const id = computed(() => props.id)
 const name = computed(() => props.name)
 const teacherNum = computed(() => props.teacherNum)
 const studentNum = computed(() => props.studentNum)
+
+const emit = defineEmits<{
+  onAction:[value: string]
+}>()
+const handleAction = (type: string) =>{
+  emit('onAction', type)
+}
 </script>
 
 <template>
   <div class="class_card">
     <span class="name">{{name}}</span>
-    <span class="student_num">{{teacherNum}}</span>
-    <span class="teacher_num">{{studentNum}}</span>
+    <span class="student_num">关联学生: {{teacherNum}}</span>
+    <span class="teacher_num">关联老师: {{studentNum}}</span>
     <span class="action">
       <el-tooltip placement="top" content="编辑">
-        <el-icon><Edit /></el-icon>
+        <el-icon @click="handleAction('edit')"><Edit /></el-icon>
+      </el-tooltip>
+      <el-tooltip placement="top" content="删除">
+        <el-icon class="ml24" @click="handleAction('delete')"><Delete /></el-icon>
       </el-tooltip>
     </span>
   </div>

@@ -15,7 +15,7 @@
       </div>
     </el-header>
     <el-main style="height: 100%;">
-      <ClassComponent v-if="activeIndex === '1'"></ClassComponent>
+      <ClassComponent ref="classRef" v-if="activeIndex === '1'"  @on-edit="handleEditInstance"></ClassComponent>
       <TeacherComponent v-if="activeIndex === '2'"></TeacherComponent>
       <StudentComponent v-if="activeIndex === '3'"></StudentComponent>
       <CollegeComponent ref="collegeRef" v-if="activeIndex === '4'" @on-edit="handleEditInstance" ></CollegeComponent>
@@ -32,6 +32,7 @@ import CreateModalComponent from '@/components/CreateModalComponent.vue'
 import CollegeComponent from './college/CollegePage.vue'
 const activeIndex = ref('1')
 const collegeRef = ref(null);
+const classRef = ref(null);
 const handleSelect = (index: string) => {
   activeIndex.value = index
 }
@@ -50,7 +51,6 @@ const getCreateType = () =>{
 
 const editInstance = ref(null);
 const handleEditInstance = (current: any) =>{
-  console.log('从college card 穿出的数据',current)
   modalVisible.value = true;
   editInstance.value = current;
 }
@@ -59,7 +59,16 @@ const handleEditInstance = (current: any) =>{
 const handleDrawerClose = () =>{
   modalVisible.value = false;
   editInstance.value = null;
-  collegeRef.value?.getCollegeList();
+  let currentRef = null;
+  switch (activeIndex.value){
+    case '1':
+      currentRef = classRef;
+      break;
+    case '4':
+      currentRef = collegeRef;
+      break;
+  }
+  currentRef && currentRef.value?.getList();
 }
 const createInstance = () =>{
   modalVisible.value = true;

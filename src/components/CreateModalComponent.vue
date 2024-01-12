@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps, defineEmits, computed } from 'vue'
 import EditCollegeComponent from '@/views/college/EditCollegeComponent.vue'
+import EditClassComponent from '@/views/class/editClassComponent.vue'
 
 const props = defineProps({
   isVisible: Boolean,
@@ -45,6 +46,7 @@ const onClose = () =>{
     @close="onClose">
     <div class="modal_content">
       <editCollegeComponent v-if="type === 'college'" :edit-data="props.editData" @handleClose="onClose"></editCollegeComponent>
+      <edit-class-component v-if="type === 'class'" :edit-data="props.editData" @handleClose="onClose"></edit-class-component>
     </div>
   </el-drawer>
 </template>
