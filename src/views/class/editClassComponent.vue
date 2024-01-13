@@ -39,9 +39,7 @@ const onSubmit = () =>{
     year: formData.year,
     collegeId: formData.collegeId
   }
-  console.log(params)
   getEduClient().createClass(params).then(res => {
-    console.log(res)
     if(res.id){
       emit('handleClose')
     }

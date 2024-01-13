@@ -49,7 +49,6 @@ const yearList = reactive([
 ])
 const getList = () =>{
   getEduClient().getClassList({collegeId: collegeId.value, year: year.value}).then(res => {
-    console.log(res)
     classList.value = res.map(item =>{
       return {
         id: item.id,
@@ -62,7 +61,6 @@ const getList = () =>{
 }
 const getCollegeList = () =>{
   getEduClient().getCollegeList().then(res => {
-    console.log(res)
     collegeList.push(...res.map(item =>{
       return {
         id: item.id,

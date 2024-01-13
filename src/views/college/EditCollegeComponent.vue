@@ -14,7 +14,6 @@ const emit = defineEmits<
   }>();
 const onSubmit = () =>{
   getEduClient().createCollege({name: formData.name, id: props.editData?.id}).then(res => {
-    console.log(res)
     if(res.id){
       emit('handleClose')
     }

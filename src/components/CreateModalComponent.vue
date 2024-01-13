@@ -3,6 +3,7 @@ import { defineProps, defineEmits, computed } from 'vue'
 import EditCollegeComponent from '@/views/college/EditCollegeComponent.vue'
 import EditClassComponent from '@/views/class/editClassComponent.vue'
 import EditStudentComponent from '@/views/student/EditStudentComponent.vue'
+import EditTeacherComponent from '@/views/teacher/EditTeacherComponent.vue'
 
 const props = defineProps({
   isVisible: Boolean,
@@ -49,6 +50,7 @@ const onClose = () =>{
       <editCollegeComponent v-if="type === 'college'" :edit-data="props.editData" @handleClose="onClose"></editCollegeComponent>
       <edit-class-component v-if="type === 'class'" :edit-data="props.editData" @handleClose="onClose"></edit-class-component>
       <edit-student-component v-if="type === 'student'" :edit-data="props.editData" @handleClose="onClose"></edit-student-component>
+      <edit-teacher-component v-if="type === 'teacher'" :edit-data="props.editData" @handleClose="onClose"></edit-teacher-component>
     </div>
   </el-drawer>
 </template>

@@ -20,7 +20,6 @@ const studentList = ref<Student[]>([
 ])
 const getList = () =>{
   getEduClient().getStudentList().then(res => {
-    console.log(res);
     studentList.value = res.map(item =>{
       return {
         id: item.id,
@@ -43,7 +42,6 @@ const handleAction = (type: string, current: any) =>{
   }
   if(type === 'delete'){
     getEduClient().deleteStudent(current.id).then(res => {
-      console.log(res)
       if(res){
         getList()
       }

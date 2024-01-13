@@ -54,7 +54,13 @@ export class eduApi {
    * 添加 老师
    */
   public async createTeacher(teacherParam: any): Promise<any>{
-    return this.eduClient.restPost('/teacher', teacherParam);
+    return this.eduClient.restPost('/api/teacher', teacherParam);
+  }
+  public async getTeacherList(): Promise<any>{
+    return this.eduClient.restGet('/api/teacher/all', {});
+  }
+  public async deleteTeacher(id:number): Promise<any>{
+    return this.eduClient.restDelete(`/api/teacher/${id}`);
   }
   /**
    * 添加 学生

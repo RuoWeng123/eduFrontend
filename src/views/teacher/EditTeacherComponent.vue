@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import { getEduClient } from '@/api/eduApi'
-import type { Class, ClassList, Student } from '@/common/types/eduType'
+import type { Class, ClassList, Teacher } from '@/common/types/eduType'
 const props = defineProps({
-  editData: Object as () => Student,
+  editData: Object as () => Teacher,
 });
 const formData = reactive({
   name: props.editData?.name || '',
-  sex: props.editData?.sex || '',
-  card: props.editData?.card || '',
-  classId: props.editData?.classId || '',
+  course: props.editData?.course || '',
+  headClassId: props.editData?.headClassId || '',
+  classes: props.editData?.classes || [],
 })
 
 const emit = defineEmits<
@@ -17,12 +17,13 @@ const emit = defineEmits<
     handleClose: []
   }>();
 const onSubmit = () =>{
-  getEduClient().createStudent({
-    name: formData.name,
-    id: props.editData?.id,
-    sex: formData.sex,
-    card: formData.card,
-    classId: formData.classId
+  getEduClient().createTeacher({
+      id: props.editData?.id,
+      name: formData.name,
+      course: formData.course,
+      headClassId: formData.headClassId,
+      classes: formData.classes,
+      roleId: 2
     }
   ).then(res => {
     if(res){
@@ -45,10 +46,6 @@ onMounted(async () => {
   classList.value = await getClassList()
 })
 
-const sexList = ref([
-  {label: '男', value: 1},
-  {label: '女', value: 2},
-])
 </script>
 
 <template>
@@ -56,21 +53,21 @@ const sexList = ref([
     <el-form-item label="名字" prop="name">
       <el-input v-model="formData.name"></el-input>
     </el-form-item>
-    <el-form-item label="性别" prop="sex">
-      <el-select v-model="formData.sex" placeholder="请选择性别">
+    <el-form-item label="课程" prop="course">
+      <el-input v-model="formData.course"></el-input>
+    </el-form-item>
+    <el-form-item label="班主任" prop="headClassId">
+      <el-select v-model="formData.headClassId" placeholder="请选择班级">
         <el-option
-          v-for="item in sexList"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
+          v-for="item in classList"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id">
         </el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="身份证" prop="card">
-      <el-input v-model="formData.card"></el-input>
-    </el-form-item>
-    <el-form-item label="班级" prop="class">
-      <el-select v-model="formData.classId" placeholder="请选择班级">
+    <el-form-item label="教学班级" prop="classes">
+      <el-select multiple v-model="formData.classes" placeholder="please choose">
         <el-option
           v-for="item in classList"
           :key="item.id"

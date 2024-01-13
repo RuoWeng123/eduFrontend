@@ -18,7 +18,6 @@ const collegeList = ref([
 ])
 const getList = () =>{
   getEduClient().getCollegeList().then(res => {
-    console.log(res);
     collegeList.value = res.map(item =>{
       return {
         id: item.id,
@@ -40,7 +39,6 @@ const handleAction = (type: string, current: any) =>{
   }
   if(type === 'delete'){
     getEduClient().deleteCollege(current.id).then(res => {
-      console.log(res)
       if(res){
         getList()
       }

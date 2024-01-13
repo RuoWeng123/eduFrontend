@@ -18,7 +18,7 @@ type Student = {
   name: string;
   card: string;
   sex: number;
-  classId: number;
+  classId: number | undefined;
 }
 type StudentList = Student[];
 
@@ -27,8 +27,10 @@ type Teacher = {
   name: string;
   password: string;
   course: string;
-  subject: string | undefined;
-  role_id: number;
+  roleId: number;
+  headClassId: number | undefined;
+  headClass: any;
+  classes: number[];
 }
 type TeacherList = Teacher[];
 
@@ -40,6 +42,5 @@ export type {
   Student,
   StudentList,
   Teacher,
-  Gender,
   TeacherList,
 }
