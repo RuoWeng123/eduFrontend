@@ -1,6 +1,5 @@
 import type {IHttpClient} from '@/api/IHttpClient'
 import { axiosHttpClient } from '@/api/axiosHttpClient'
-
 export class eduApi {
   private eduClient: IHttpClient;
   
@@ -12,7 +11,7 @@ export class eduApi {
    * 教师登录
    */
   public async loginTeacher(LoginParam: any): Promise<any>{
-    return this.eduClient.restPost('/api/teacher/login', LoginParam)
+    return this.eduClient.restPost('/api/auth/login/teacher', LoginParam)
   }
   
   /**
@@ -107,4 +106,13 @@ export const setAuthToken = (token: string) => {
 
 export const resetAuthToken = () =>{
   axiosHttpClient.resetAuthToken();
+}
+
+export const validateToken = (token: string) => {
+  if(!token) {
+    console.log('无效token');
+    return;
+  }
+  // const decodeJwt = decode(token);
+  // console.log('解析token', decodeJwt);
 }

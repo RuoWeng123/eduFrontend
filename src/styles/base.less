@@ -111,8 +111,6 @@
 @select-multiple-item-height-lg: 32px;
 @select-multiple-item-disabled-color: #bfbfbf;
 
-
-
 .mr16{
   margin-right: 16px;
 }
@@ -132,11 +130,24 @@
   margin-left: 32px;
 }
 
-.ng_spin{
-  :global{
-    .ant-spin {
-      height: 100%;
-      max-height: 100% !important;
-    }
+@properties: ml, mr, mb, mt;
+@values: 8, 16,24, 32;
+
+.loop-margin(@property, @index) when(@index > 0) {
+  @value: extract(@values, @index);
+  .@{property}@{value} {
+    margin-@{property}: @value + px;
   }
+
+  .loop-margin(@property, @index - 1);
 }
+
+.loop-properties(@index) when (@index > 0) {
+  @property: extract(@properties, @index);
+
+  .loop-margin(@property, length(@values));
+
+  .loop-properties(@index - 1);
+}
+
+.loop-properties(length(@properties));

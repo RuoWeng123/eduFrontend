@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, computed } from 'vue'
+import { computed } from 'vue'
 import EditCollegeComponent from '@/views/college/EditCollegeComponent.vue'
 import EditClassComponent from '@/views/class/editClassComponent.vue'
 import EditStudentComponent from '@/views/student/EditStudentComponent.vue'
@@ -47,7 +47,7 @@ const onClose = () =>{
     :close-on-press-escape="true"
     @close="onClose">
     <div class="modal_content">
-      <editCollegeComponent v-if="type === 'college'" :edit-data="props.editData" @handleClose="onClose"></editCollegeComponent>
+      <edit-college-component v-if="type === 'college'" :edit-data="props.editData" @handleClose="onClose"></edit-college-component>
       <edit-class-component v-if="type === 'class'" :edit-data="props.editData" @handleClose="onClose"></edit-class-component>
       <edit-student-component v-if="type === 'student'" :edit-data="props.editData" @handleClose="onClose"></edit-student-component>
       <edit-teacher-component v-if="type === 'teacher'" :edit-data="props.editData" @handleClose="onClose"></edit-teacher-component>

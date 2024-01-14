@@ -73,9 +73,9 @@
       getEduClient().loginTeacher({username: formData.username, password: formData.pass}).then(res => {
         console.log('登录结果',res)
         if(res.id){
-          setAuthToken(res.token)
+          setAuthToken(res.token.access_token)
           const {setUser} = useUserStore();
-          setUser({id: res.id, name: formData.username, role_id: res.role_id,token: res.token});
+          setUser({id: res.id, name: formData.username, role_id: res.role_id,token: res.token.access_token});
           router.push('/inner')
         }
       }).catch(err => {

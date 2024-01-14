@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { reactive, defineProps, onMounted, ref } from 'vue'
+import { reactive, onMounted, ref } from 'vue'
 import { getEduClient } from '@/api/eduApi'
 import type { College, CollegeList } from '@/common/types/eduType'
 import { dayjs } from 'element-plus'

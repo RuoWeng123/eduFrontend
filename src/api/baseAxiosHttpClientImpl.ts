@@ -51,7 +51,6 @@ export class AxiosHttpClientImpl implements IHttpClient {
         url,
         config
       );
-      
       return response.data;
     } catch (err: any) {
       this.handleHttpError(err, url);
@@ -87,6 +86,7 @@ export class AxiosHttpClientImpl implements IHttpClient {
     }
   }
   
+  //@runBefore('checkToken')
   public async restPost<TData, T>(url: string, data: TData): Promise<T> {
     try {
       const config: AxiosRequestConfig = {
